@@ -1,0 +1,11 @@
+Use hugo -t hugo-clarity to push to public folder, and then from there git add . git commit "" git push origin master (Update the live URL)
+
+Find the Logo images in jrhacka/static/logos (images are in static also)
+	(Have temp screenshot set for now)
+
+Set little description on line 7
+
+https://themes.gohugo.io/themes/hugo-clarity/
+	Ton of good info on this site
+
+Need to figure out why home tab is acting up but not archive
