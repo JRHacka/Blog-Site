@@ -1,0 +1,4 @@
+[submodule "jrhacka/public"]
+	path = jrhacka/public
+	url = https://github.com/JRHacka/jrhacka.github.io
+	branch = master
