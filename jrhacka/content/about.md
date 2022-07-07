@@ -6,6 +6,13 @@ aliases:
 author: 'Jake Rice'
 usePageBundles: true
 
+# featureImage: 'https://raw.githubusercontent.com/JRHacka/Blog-Site/main/jrhacka/static/images/BioPic.png'
+# Top image on post.
+# featureImageAlt: 'Description of image' # Alternative text for featured image.
+# featureImageCap: 'This is the featured image.' # Caption (optional).
+# thumbnail: 'https://raw.githubusercontent.com/JRHacka/Blog-Site/main/jrhacka/static/logos/logo.png' # Image in lists of posts.
+# shareImage: 'https://raw.githubusercontent.com/JRHacka/Blog-Site/main/jrhacka/static/logos/logo.png' # For SEO and social media snippets.
+
 categories:
   - About Me
 tags:
@@ -14,8 +21,7 @@ series:
   - Myself
 ---
 ##### Hello World! (IYKYK) 
-
- ![Step A](BioPic.png)
+![Pic Here](BioPic.png)
 
 My name is Jake Rice, and welcome to my site! Whether you are here for writeups, as a recruiter, or ended up here on accident I hope you enjoy. The rest of this article will just be a brief background on me and some of my interests. I was going to make this short, but then realized it's my site, and I can do what I want! 
 
