@@ -1,25 +1,25 @@
-+++
-title = "About"
-description = "Hugo, the world's fastest framework for building websites"
-date = "2019-02-28"
-aliases = ["about-us", "about-hugo", "contact"]
-author = "Hugo Authors"
-+++
+---
+title: 'Using Hugo page bundles'
+description: 'Page bundles are an optional way to organize content within Hugo.'
+summary: "Page bundles are an optional way to organize page resources within Hugo. You can opt-in to using page bundles in Hugo Clarity with `usePageBundles` in your site configuration --- or in a page's front matter." # For the post in lists.
+date: '2022-07-06'
+aliases:
+  - hugo-page-bundles
+author: 'Jake Rice'
+usePageBundles: true
 
-Written in Go, Hugo is an open source static site generator available under the [Apache Licence 2.0.](https://github.com/gohugoio/hugo/blob/master/LICENSE) Hugo supports TOML, YAML and JSON data file types, Markdown and HTML content files and uses shortcodes to add rich content. Other notable features are taxonomies, multilingual mode, image processing, custom output formats, HTML/CSS/JS minification and support for Sass SCSS workflows.
+featureImage: 'https://images.unsplash.com/photo-1447069387593-a5de0862481e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1169&q=80' # Top image on post.
+# featureImageAlt: 'Description of image' # Alternative text for featured image.
+# featureImageCap: 'This is the featured image.' # Caption (optional).
+# thumbnail: 'thumbnail.jpg' # Image in lists of posts.
+# shareImage: 'share.jpg' # For SEO and social media snippets.
 
-Hugo makes use of a variety of open source projects including:
+categories:
+  - syntax
+tags:
+  - Hugo
+series:
+  - Themes Guide
+---
 
-* https://github.com/yuin/goldmark
-* https://github.com/alecthomas/chroma
-* https://github.com/muesli/smartcrop
-* https://github.com/spf13/cobra
-* https://github.com/spf13/viper
-
-Hugo is ideal for blogs, corporate websites, creative portfolios, online magazines, single page applications or even a website with thousands of pages.
-
-Hugo is for people who want to hand code their own website without worrying about setting up complicated runtimes, dependencies and databases.
-
-Websites built with Hugo are extremelly fast, secure and can be deployed anywhere including, AWS, GitHub Pages, Heroku, Netlify and any other hosting provider.
-
-Learn more and contribute on [GitHub](https://github.com/gohugoio).
+Test

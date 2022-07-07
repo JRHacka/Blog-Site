@@ -1,96 +1,145 @@
 ---
-title: 'Using Hugo page bundles'
-description: 'Page bundles are an optional way to organize content within Hugo.'
-summary: "Page bundles are an optional way to organize page resources within Hugo. You can opt-in to using page bundles in Hugo Clarity with `usePageBundles` in your site configuration --- or in a page's front matter." # For the post in lists.
-date: '2022-03-24'
+title: 'The 7 Hours of Creation'
+description: 'Creating a Static Site Using GitHub and Hugo.'
+summary: "First off creating this site did not actually take me 7 hours. In fact, it was relatively quick and minus a few hiccups here and there was a smooth process.I will be sure and include links/videos I used at the end of the article in case you all would like to reference them, but my hope is to do a well enough job here you wouldn't need to. With that being said let’s dive in! ." # For the post in lists.
+date: '2022-07-06'
 aliases:
   - hugo-page-bundles
-author: 'Hugo Authors'
+author: 'Jake Rice'
 usePageBundles: true
 
-featureImage: 'https://images.unsplash.com/photo-1447069387593-a5de0862481e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1169&q=80' # Top image on post.
+featureImage: 'https://raw.githubusercontent.com/JRHacka/Blog-Site/main/jrhacka/static/logos/logo.png'
+# Top image on post.
 # featureImageAlt: 'Description of image' # Alternative text for featured image.
 # featureImageCap: 'This is the featured image.' # Caption (optional).
-# thumbnail: 'thumbnail.jpg' # Image in lists of posts.
-# shareImage: 'share.jpg' # For SEO and social media snippets.
+thumbnail: 'https://raw.githubusercontent.com/JRHacka/Blog-Site/main/jrhacka/static/logos/logo.png' # Image in lists of posts.
+shareImage: 'https://raw.githubusercontent.com/JRHacka/Blog-Site/main/jrhacka/static/logos/logo.png' # For SEO and social media snippets.
 
 categories:
-  - syntax
+  - Website
 tags:
-  - Hugo
+  - Hugo 
+  - Website
 series:
-  - Themes Guide
+  - Creating a Site
 ---
 
-[Page bundles](https://gohugo.io/content-management/page-bundles/) are an optional way to [organize page resources](https://gohugo.io/content-management/page-resources/) within Hugo.
+ 
+### 1 - Create a GitHub Repository and Clone it 
 
-You can opt-in to using page bundles in Hugo Clarity with `usePageBundles` in your site configuration or in a page's front matter. [Read more about `usePageBundles`.](https://github.com/chipzoller/hugo-clarity#organizing-page-resources)
 
-With page bundles, resources for a page or section, like images or attached files, live **in the same directory as the content itself** rather than in your `static` directory.
-
-Hugo Clarity supports the use of [leaf bundles](https://gohugo.io/content-management/page-bundles/#leaf-bundles), which are any directories within the `content` directory that contain an `index.md` file. Hugo's documentation gives this example:
+The site I created is a static site via GitHub and using a Hugo theme. Therefore, the first step is setting up your GitHub repository. In order to do this create a free account on https://github.com/. Once you have an account you are going to want to set up two different repositories. We are doing this so one can house content until we push it to the main repository that will host the sites static files.  
 
 ```text
-content
-├── about
-│   ├── index.md
-├── posts
-│   ├── my-post
-│   │   ├── content1.md
-│   │   ├── content2.md
-│   │   ├── image1.jpg
-│   │   ├── image2.png
-│   │   └── index.md
-│   └── my-other-post
-│       └── index.md
-│
-└── another-section
-    ├── ..
-    └── not-a-leaf-bundle
-        ├── ..
-        └── another-leaf-bundle
-            └── index.md
+A)  Select the plus sign in the top right corner and choose “New Repository” (It may be in a different spot, but should be easy to identify) 
+
+B)  Name it and describe it as whatever really. I named this one blog-site and put some basic description. 
+
+C)  Click create repository 
+
+D)  Repeat this for what will be the site repository. 
+   (Note: Name this repository whatever you are going to name the site (enter name here).github.io) 
+
+E)  You should have 2 repositories that look similar to the below. 
+
+F)  Clone your blog repository (git clone xxxxx) 
+````
+![Step A](test.png)
+![Step E](test2.png)
+
+### 2 - Select and Clone your Theme
+
+
+Go to the Hugo site https://themes.gohugo.io/themes and select your theme. I used “Clarity”, but the process will be similar no matter which theme you choose. Once you have the theme you want, hop back over to your machine and we are going to create the appropriate site. Jump into the equivalent of the “Blog-Site” folder we cloned and run the following command to create a new hugo site.
+```bash
+hugo new site enternamehere
+```  
+
+Once that is done hop into that new folder(titled enternamehere) and find the themes directory. Jump into themes and run git clone on the Hugo repository. There is either a command to copy directly from the page or you can select download and copy the GitHub address.  
+
+```bash
+git clone https://siteaddress.com/downloadyourtheme
+``` 
+{{% notice note "Note" %}}
+Depending on your theme it may be a slightly different process.
+{{% /notice %}}
+ 
+
+### 3 - Explore your Theme & the Initial Configuration
+
+
+Jump into the themes folder, and then into the named folder that matches your theme (/themes/themename/). Check out the contents of that folder and you should see treasure troves of information. In my experience each theme I have toyed with has an “examplesite” folder with sample files and content to use. Somewhere in that folder find the theme.toml/config.toml. Copy that material and paste it into the config.toml in your site folder.  
+```bash
+subl /home/kali/yourblogfolder/blogname/config.toml
+``` 
+
+Be sure to change things appropriately, such as baseurl, and language if needed. Also, take some time here and really dig around in the "examplesite" folder. You will find key examples to use for your own content and site customizations.  
+
+
+### 4 - "Sync" the Repository with your Machine
+
+
+Run the command Hugo to create the site locally. It will provide you with your local site address. If you don’t like it then delete the contents in the theme folder and go back to step 2 with your new theme. Depending on which theme you chose it may not run locally but go check the documentation and it should give you good instructions on how to get to that point! If it doesn’t that’s your sign to switch themes. 
+```bash
+hugo server
+``` 
+
+After you have confirmed you like your theme go back to the main directory (../Blog) and now clone your site repository (git clone entername.github.io). Enter that new directory and create something we can use to commit. I created a README.md. Once that is done run the following commands in this order. 
+
+{{% notice tip "Commands in Order"%}}
+This is a notice that has a lot of various kinds of content in it.  
+
+* Stage your changes
+```bash
+git add .
 ```
+* Commit your repository
+```bash
+git commit -m "Enter Commit Text Here"
+```
+* Push the data through the branch
+```bash
+git push origin main
+```
+(On doing this for my second theme I did bump into some problems using my “Password” for Github. If you are having those troubles go into developer settings in the general settings in Github and generate a personal access token to use as your password.) 
+![](test3.png)
+* After that is done jump back into your blog repository (In my case /home/kali/Blog-Site/jrhacka). Run the command:
+```bash
+git submodule add –b main (address of the site repository) public
+```
+* This creates a “public” folder that will house content. When in that folder you should see your README.md you created in the beginning of step 4. 
+* Generate the static files by running 
+```bash
+hugo -t themename
+```
+* This will place the static files into the public directory. You will need to run that in order to update the actual site. After that hop into the public folder and run steps A, B, and C again.
+{{% /notice %}}
 
-<blockquote>
-In the above example `content` directory, there are four leaf
-bundles:
 
-**about**: This leaf bundle is at the root level (directly under
-    `content` directory) and has only the `index.md`.
+### 5 - Change the Style
 
-**my-post**: This leaf bundle has the `index.md`, two other content
-    Markdown files and two image files. **image1** is a page resource of `my-post`
-    and only available in `my-post/index.md` resources. **image2** is a page resource of `my-post`
-    and only available in `my-post/index.md` resources.
+Now this is more just general advice then an actual step by step guide. Refer to the documentation, open a separate command terminal and deploy the site locally, and bounce between the example site and your actual folder changing files. This is the best way I have found to customize the site as each theme is dramatically different in how they are set up. I would be more than happy to help you research if you bump into problems though! 
 
-**my-other-post**: This leaf bundle has only the `index.md`.
 
-**another-leaf-bundle**: This leaf bundle is nested under couple of
-    directories. This bundle also has only the `index.md`.
+### 6 - Upload Content 
 
-_The hierarchy depth at which a leaf bundle is created does not matter,
-as long as it is not inside another **leaf** bundle._
-</blockquote>
+When it comes to uploading content, I recommend doing it this way. Find the example you like in the examplesite/content folder (or if not there refer to your theme documentation), copy it to the appropriate folder (such as Blog/jrhacka/content), and then replace it with your content and changes. I always copy those from the examplesite folder, place them in the matching directory path in my actual directory, and just edit the files. It’s much easier that way and saves you a lot of time and effort. 
 
-### Advantages to using page bundles
+ 
+### 7 - Go Live and Enjoy 
 
-The image below is part of the bundle of this page, and is located at `content/post/bundle/building.png`. Because it's within this page's bundle, the markup for the image only has to specify the image's filename, `building.png`.
 
-![A building](building.png)
+Lastly, navigate to the directory where everything is stored (/home/kali/Blog/xxx) and use hugo –t (theme name). Hop in the updated public folder and then run the git trio (add commit push – or steps A, B, & C from section 4). After that just continue to play with your site, but it should be live and rolling! CONGRATS!!! 
 
-If you ever change the name of the directory in which this Markdown file and the image reside, the reference to the image would not need to be updated.
+Again, if you have any questions feel free to message me via email or any social media site! 
 
-In addition to more cleanly organizing your content and related assets, when using page bundles, **Hugo Clarity will automatically generate markup for modern image formats**, which are smaller in file size.
+{{% notice warning "External Resources" %}}
+Creating a Blog with Hugo and Github in 10 minutes
+    https://www.youtube.com/watch?v=LIFvgrRxdt4
 
-For instance, when you reference an image like `building.png`, Hugo Clarity will check to see if the same image (based on filename) exists in [WebP](https://en.wikipedia.org/wiki/WebP), [AVIF](https://en.wikipedia.org/wiki/AVIF) or [JXL](https://en.wikipedia.org/wiki/JPEG_XL) formats. If you inspect the image above, you'll see a `<source>` element for `building.webp`, because that file is also present. Hugo Clarity will only include the markup if these images exist.
+My Theme
+    https://themes.gohugo.io/themes/hugo-clarity/
 
-Browsers that [support these formats and the `<picture>` element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/picture#the_type_attribute) will load them, while browsers that do not will fall-back to the default image. [Read more about this process.](https://github.com/chipzoller/hugo-clarity#support-for-modern-image-formats)
-
-Finally, note that page assets can be further managed and refined [within the page's front matter](https://gohugo.io/content-management/page-resources/#page-resources-metadata) if you wish, and are not limited to images alone.
-
-### Disadvantages to using page bundles
-
-Page resources in a bundle are only available to the page with which they are bundled &#8212; that means you can't include an image with one page and then reference it from another.
-
-Images that are being used in multiple places are more appropriate for your [Hugo `assets` directory](https://gohugo.io/hugo-pipes/introduction/). Unlike files in the Hugo `static` directory, files in the `assets` directory can be run through Hugo Pipes, which [includes image processing](https://gohugo.io/content-management/image-processing/).
+Hugo Quickstart Documentation
+    https://gohugo.io/getting-started/quick-start/
+{{% /notice %}}
