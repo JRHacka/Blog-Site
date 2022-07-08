@@ -21,11 +21,12 @@ series:
   - Myself
 ---
 ##### Hello World! (IYKYK) 
-![Pic Here](BioPic.png)
+
+![::round](https://raw.githubusercontent.com/JRHacka/Blog-Site/main/jrhacka/static/images/BioPic.png)
 
 My name is Jake Rice, and welcome to my site! Whether you are here for writeups, as a recruiter, or ended up here on accident I hope you enjoy. The rest of this article will just be a brief background on me and some of my interests. I was going to make this short, but then realized it's my site, and I can do what I want! 
 
- 
+
 
 I grew up in a pretty small town in southeast Missouri. My family was very much average middle class, and nothing particularly exciting on that front. My mom attended college for two years, but my dad had to begin working straight out of high school. I have two younger brothers Joe and James. We grew up a hardworking family, and my dad had my brother and I out doing yardwork or some project any free weekend or holiday. Even though I certainly did not enjoy it then I am glad I had that experience now. I give 100% of the credit to my parents when thinking about where my work ethic comes from.  
 
