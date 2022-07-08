@@ -22,7 +22,7 @@ series:
 ---
 ##### Hello World! (IYKYK) 
 
-![::round](https://raw.githubusercontent.com/JRHacka/Blog-Site/main/jrhacka/static/images/BioPic.png)
+![:left ::round](https://raw.githubusercontent.com/JRHacka/Blog-Site/main/jrhacka/static/logos/me.jpg)
 
 My name is Jake Rice, and welcome to my site! Whether you are here for writeups, as a recruiter, or ended up here on accident I hope you enjoy. The rest of this article will just be a brief background on me and some of my interests. I was going to make this short, but then realized it's my site, and I can do what I want! 
 
