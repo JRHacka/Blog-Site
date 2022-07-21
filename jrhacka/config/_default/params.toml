@@ -84,7 +84,7 @@ mobileNavigation = "left" # if you prefer right change to 'right'
 enforceDarkMode = true
 
 # customize footer icon. see issue https://github.com/chipzoller/hugo-clarity/issues/77
-footerLogo = "logos/TempLogo.png"
+footerLogo = "logos/LogoOutline.png"
 
 # Customize Sidebar Disclaimer Text
 # sidebardisclaimer = true
