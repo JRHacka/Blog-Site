@@ -1,5 +1,5 @@
 ---
-title: 'About Me'
+title: 
 date: '2022-07-06'
 aliases:
   - hugo-page-bundles
