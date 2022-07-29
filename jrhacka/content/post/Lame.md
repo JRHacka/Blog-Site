@@ -40,7 +40,7 @@ That IP in the green box will be the IP you use for yourself during interactions
 
 The first thing I always like to do is run NMap. Here is the NMap scan I ran and a breakdown of the flags I used.
 ```bash
-nmap nmap -sT -sV -Pn -p- -A -T3 tar.get.ip.add -oA /home/kali/HTB/WU/Lame/nmap/scans
+nmap -sT -sV -Pn -p- -A -T3 tar.get.ip.add -oA /home/kali/HTB/WU/Lame/nmap/scans
 ```
 {{% notice tip "NMAP Flags"%}}
 -sT =
@@ -126,4 +126,47 @@ In the NMap scan the first thing that should catch your eye is that port 21 FTP 
 ```bash
 ftp anonymous@tar.get.ip.add 
 ```
+{{% notice note "Heads Up"%}}
+The username being used is the one before the @ sign.
+{{% /notice %}}
 
+Once you get in there you can do some snooping, but you're not able to find anything. Just to cover your bases login using ftp as the user too. Unfourtaenly, there is nothing there either. It appears anonymous FTP was a red herring. That's okay though, because we have another open port to check!
+
+---
+
+## Port 139/445 - Samba
+
+First off what is Samba? Port 139 and 445 are SMB and used for file transfer, and back in the day it used to run on top of NetBIOS. Now days port 445 TCP can use it for file transfer. When looking for this specific version you do find that there is an exploit for it. This is the perfect time to introduce searchsploit.
+```bash
+searchsploit samba 3.0.2
+```
+When doing that we see several exploits, but the one we'll focus on is:
+
+{{% notice tip "Searchploit Result"%}}
+Samba 3.0.20 < 3.0.25rc3 - 'Username' map script' Command Execution (Metasploit) | unix/remote/16320.rb
+{{% /notice %}}
+
+Now that we've found an exploit it's time to... exploit!
+
+---
+
+
+## Exploiting the vulnerablity
+
+From our searchsploit result we see we can use this exploit via Metasploit. Lets get it spun up and dive in.
+```bash
+msfconsole
+```
+Once you have it started we can get is set up.
+
+{{% notice tip "Metasploit Setup"%}}
+1- Use show options
+
+2-Set the rhost as the target IP (set rhost tar.get.ip.add)
+
+3-Set the lhost as your IP (set lhost your.HTB.ip.add)(The IP given to you via HTB (it's in the green box))
+
+4-Use exploit (exploit OR run)
+{{% /notice %}}
+
+It works!! Now time to dig around and find the flags. I'll leave that part for you, but feel free to message me if you need a hand!
