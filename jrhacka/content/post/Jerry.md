@@ -7,7 +7,7 @@ tags = [
     "HTB",
     "CTF_Walkthrough",
 ]
-thumbnail = "images/Jerry_logo.png"
+thumbnail = "https://raw.githubusercontent.com/JRHacka/Blog-Site/main/jrhacka/static/images/Jerry_logo.png"
 
 +++
 Oh my how the clever titles continue. This is a box walkthrough of Jerry from HTB. Come and follow along as we discover the vulnerabilties, exploit the machine, and hack the box!

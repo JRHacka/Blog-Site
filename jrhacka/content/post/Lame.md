@@ -7,7 +7,7 @@ tags = [
     "HTB",
     "CTF_Walkthrough",
 ]
-thumbnail = "images/Lame_logo.png"
+thumbnail = "https://raw.githubusercontent.com/JRHacka/Blog-Site/main/jrhacka/static/images/Lame_logo.png"
 
 +++
 Clever titles for days. This walkthough of the Lame box is another begginner friendly entry level HTB. We'll explore a little anonymous FTP, and find out more about Samba. s
