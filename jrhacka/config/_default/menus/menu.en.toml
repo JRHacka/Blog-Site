@@ -15,6 +15,10 @@
   weight = -108
 [[main]]
   parent = "Links"
+  name = "Discord: The Lost Ones"
+  url = "https://discord.gg/ZaH8vn4hxS"
+[[main]]
+  parent = "Links"
   name = "LinkedIn"
   url = "https://www.linkedin.com/in/jake-rice-371b0a16b/"
 [[main]]

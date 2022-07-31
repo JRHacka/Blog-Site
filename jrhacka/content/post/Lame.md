@@ -50,7 +50,7 @@ nmap -sT -sV -Pn -p- -A -T3 tar.get.ip.add -oA /home/kali/HTB/WU/Lame/nmap/scans
 
 -sV = OS Version
 
--Pn = Scan all ports, and don't ping. (Scans prots no matter what)
+-Pn = Scan all ports, and don't ping. (Scans ports no matter what)
 
 -p- = All ports
 
@@ -160,7 +160,7 @@ From our searchsploit result we see we can use this exploit via Metasploit. Lets
 ```bash
 msfconsole
 ```
-Once you have it started we can get is set up.
+Once you have it started we can get it set up.
 
 {{% notice tip "Metasploit Setup"%}}
 1- Use show options
