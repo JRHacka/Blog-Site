@@ -1,0 +1,10 @@
+_override.sass 
+	Basically says to make changes in _variable.sass
+
+_custom.sass
+	basically says to make any changes in the override.sass
+
+Maybe copy _variables to _ovverride and edit there?
+
+
+To me it seems like editing the _override variable is going to push those chages over the current settings in _variable, but I am not getting it do that. Going to message Chip, Clarity crator, to find out more.

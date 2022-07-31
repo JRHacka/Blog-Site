@@ -2,5 +2,3 @@
 	path = jrhacka/public
 	url = https://github.com/JRHacka/jrhacka.github.io
 	branch = master
-[submodule "https://github.com/JRHacka/jrhacka.github.io"]
-	url = public

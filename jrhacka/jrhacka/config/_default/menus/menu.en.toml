@@ -21,10 +21,6 @@
   parent = "Links"
   name = "Twitter"
   url = "https://twitter.com/HackaJr"
-[[main]]
-  parent = "Links"
-  name = "Certs, Completions, and Placements"
-  url = "https://1drv.ms/u/s!ApzemKTS24h1sGak-MukFujrU7WW?e=ym8W1s"
 
 [[main]]
   name = "About"

@@ -1,6 +1,6 @@
 +++
 author = "Jake Rice"
-title = "Lame is Cool"
+title = "This is my Legacy"
 date = "2022-06-04"
 description = ""
 tags = [
@@ -13,7 +13,7 @@ thumbnail = "https://raw.githubusercontent.com/JRHacka/Blog-Site/main/jrhacka/st
 shareImage = "https://raw.githubusercontent.com/JRHacka/Blog-Site/main/jrhacka/static/images/Lame_logo.png"
 
 +++
-Clever titles for days. This walkthough of the Lame box is another begginner friendly entry level HTB. We'll explore a little anonymous FTP, and find out more about Samba. You can find the walkthrough video down below!
+The clever titles just don't stop! This is my walkthrough of the Legacy HTB. Enjoy, find the video below, and reach out if you have any questions. 
 
 <!--more-->
 ---
@@ -46,7 +46,7 @@ The first thing I always like to do is run NMap. Here is the NMap scan I ran and
 nmap -sT -sV -Pn -p- -A -T3 tar.get.ip.add -oA /home/kali/HTB/WU/Lame/nmap/scans
 ```
 {{% notice tip "NMAP Flags"%}}
--sT = TCP Connect() Scan
+-sT =
 
 -sV = OS Version
 

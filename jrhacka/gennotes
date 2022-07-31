@@ -1,0 +1,21 @@
+Use hugo -t hugo-clarity to push to public folder, and then from there git add . git commit "" git push origin master (Update the live URL)
+
+Find the Logo images in jrhacka/static/logos (images are in static also)
+	(Have temp screenshot set for now)
+
+logo is set in /config/default/params.toml
+
+Set little description on line 7
+
+https://themes.gohugo.io/themes/hugo-clarity/
+	Ton of good info on this site
+
+Need to figure out why home tab is acting up but not archive
+
+Find way to add image in about lol
+
+SO far so good 07/06/2022 (waiting for it to go wrong)
+
+Colors and stuff can be found in /home/…/themes/hugo-clarity/assets/sass
+	Notes on that in blog-site/notes/customization
+	

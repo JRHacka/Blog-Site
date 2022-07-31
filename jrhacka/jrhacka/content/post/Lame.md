@@ -7,13 +7,10 @@ tags = [
     "HTB",
     "CTF_Walkthrough",
 ]
-
-featureImage = "https://raw.githubusercontent.com/JRHacka/Blog-Site/main/jrhacka/static/images/Lame_logo.png"
 thumbnail = "https://raw.githubusercontent.com/JRHacka/Blog-Site/main/jrhacka/static/images/Lame_logo.png"
-shareImage = "https://raw.githubusercontent.com/JRHacka/Blog-Site/main/jrhacka/static/images/Lame_logo.png"
 
 +++
-Clever titles for days. This walkthough of the Lame box is another begginner friendly entry level HTB. We'll explore a little anonymous FTP, and find out more about Samba. You can find the walkthrough video down below!
+Clever titles for days. This walkthough of the Lame box is another begginner friendly entry level HTB. We'll explore a little anonymous FTP, and find out more about Samba. s
 
 <!--more-->
 ---
@@ -39,14 +36,14 @@ That IP in the green box will be the IP you use for yourself during interactions
 
 ---
 
-## Intelligence Gathering
+## Intelligence gathering
 
 The first thing I always like to do is run NMap. Here is the NMap scan I ran and a breakdown of the flags I used.
 ```bash
 nmap -sT -sV -Pn -p- -A -T3 tar.get.ip.add -oA /home/kali/HTB/WU/Lame/nmap/scans
 ```
 {{% notice tip "NMAP Flags"%}}
--sT = TCP Connect() Scan
+-sT =
 
 -sV = OS Version
 
@@ -154,7 +151,7 @@ Now that we've found an exploit it's time to... exploit!
 ---
 
 
-## Exploiting the Vulnerablity
+## Exploiting the vulnerablity
 
 From our searchsploit result we see we can use this exploit via Metasploit. Lets get it spun up and dive in.
 ```bash
@@ -173,11 +170,3 @@ Once you have it started we can get is set up.
 {{% /notice %}}
 
 It works!! Now time to dig around and find the flags. I'll leave that part for you, but feel free to message me if you need a hand!
-
----
-
-## Walkthrough Video
-
-{{< youtube vPQDacqDzm0 >}}
-
-<br>
