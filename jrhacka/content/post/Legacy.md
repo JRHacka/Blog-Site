@@ -19,11 +19,11 @@ The clever titles just don't stop! This is my walkthrough of the Legacy HTB. Enj
 ---
 ## Startup
 
-This is an entry level beginner freindley box, so the walkthrough is going to be the same. With that being said, the first step that other walkthoughs always skip over is spinning up the box and getting connected. While it is easy once you know how to do it if you don't know how you'll never be able to get started. Feel free to skip to the next section if you already know how to do this.
+This is an entry level beginner friendly box, so the walkthrough is going to be the same. With that being said, the first step that other walkthroughs always skip over is spinning up the box and getting connected. While it is easy once you know how to do it if you don't know how you'll never be able to get started. Feel free to skip to the next section if you already know how to do this.
 
 HTB has 2 options when it comes to completing their boxes. You can spin up a machine via HTB, or connect your own using OpenVPN. I prefer to connect my because of the customizations and different tools I have on my Kali machine, but if you want here is where to find the HTB Attack Box.
 
-The first step if you are connecting via OpenVPN is to first make sure you have OpenVPN installed on your device. Either start typing the command see if it autofills, or if using Kali run:
+The first step if you are connecting via OpenVPN is to first make sure you have OpenVPN installed on your device. Either start typing the command see if it autofill’s, or if using Kali run:
 ```bash
 sudo apt install openvpn
 ```
@@ -46,7 +46,7 @@ The first thing I always like to do is run NMap. Here is the NMap scan I ran and
 nmap -sT -sV -Pn -p- -A -T3 tar.get.ip.add -oA /home/kali/HTB/WU/Legacy/nmap/scans
 ```
 {{% notice tip "NMAP Flags"%}}
--sT = TCP Conenct() Scan
+-sT = TCP Connect() Scan
 
 -sV = OS Version
 
@@ -58,10 +58,10 @@ nmap -sT -sV -Pn -p- -A -T3 tar.get.ip.add -oA /home/kali/HTB/WU/Legacy/nmap/sca
 
 -T3 = Speed level. (Options 1-5 with 1 being slowest and 5 fastest)
 
--oA = output namp in the three formatss to the specified file path.
+-oA = output namp in the three formats to the specified file path.
 {{% /notice %}}
 
-While that is running let's go ahead and see if we can find anything at the IP. Open up a web browser and put in the target machines IP address. We don't get any results, but we'll check a couple of the usual directories just in case. I searched around using /admin /login /user /signin /contact and got nothing, so lets dive in to those NMap results.
+While that is running let's go ahead and see if we can find anything at the IP. Open up a web browser and put in the target machines IP address. We don't get any results, but we'll check a couple of the usual directories just in case. I searched around using /admin /login /user /signin /contact and got nothing, so let’s dive in to those NMap results.
 ```bash
 Starting Nmap 7.92 ( https://nmap.org ) at 2022-07-31 15:13 EDT
 Stats: 0:00:01 elapsed; 0 hosts completed (1 up), 1 undergoing Connect Scan
@@ -116,7 +116,7 @@ OS and Service detection performed. Please report any incorrect results at https
 Nmap done: 1 IP address (1 host up) scanned in 48.41 seconds
 ```
 
-So we've got one item that really catches my eye in that NMap scan. Port 445 Windows XP microsoft-ds is open, and based on previous knowledge a really good place to start.
+So, we've got one item that really catches my eye in that NMap scan. Port 445 Windows XP microsoft-ds is open and based on previous knowledge a really good place to start.
 
 ---
 ## Port 445 - Windows XP microsoft-ds
@@ -126,7 +126,7 @@ In the NMap scan the first thing that should catch your eye is that port 445 is 
 ---
 
 
-## Exploiting the Vulnerablity
+## Exploiting the Vulnerability
 
 From our research we see we can use this exploit via Metasploit. Lets get it spun up and dive in.
 ```bash
