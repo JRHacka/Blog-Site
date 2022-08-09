@@ -94,7 +94,7 @@ BUTTTTT it still didn't work. After banging my head on the wall I realized it wa
 ---
 ## Exploring the Site
 
-This website has a whole lot going on. More then I care to just snoop into, so let's see if there are any known exploits. Looking up this version of the PRTG Network Monitor I started to get a lot of great information. We get some results about a Metasploit exploit, and also some articles about using the notifications to send malicious commands. For the sake of getting better everyday let's see if we can figure out these notification and execute something from there. 
+This website has a whole lot going on. More then I care to just snoop into, so let's see if there are any known exploits. Looking up this version of the PRTG Network Monitor I started to get a lot of great information. We get some results about a Metasploit exploit, and also some articles about using the notifications to send malicious commands. For the sake of getting better everyday let's see if we can figure out these notifications and execute something from there. 
 
 ---
 ## Exploiting the Vulnerability (Command Injection)
