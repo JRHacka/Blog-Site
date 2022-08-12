@@ -3,6 +3,7 @@ author = "Jake Rice"
 title = "Who's That Netmon?!?!"
 date = "2022-08-08"
 description = ""
+draft = true
 tags = [
     "HTB",
     "CTF_Walkthrough",

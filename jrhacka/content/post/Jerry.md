@@ -3,6 +3,7 @@ author = "Jake Rice"
 title = "Jerry "
 date = "2022-08-10"
 description = ""
+draft = true
 tags = [
     "HTB",
     "CTF_Walkthrough",
