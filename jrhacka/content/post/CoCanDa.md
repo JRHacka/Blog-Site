@@ -1,106 +1,126 @@
 +++
 author = "Jake Rice"
-title = "Who's That Netmon?!?!"
-date = "2022-08-08"
+title = "CoCanDa Forever"
+date = "2022-08-27"
 description = ""
-draft = true
+draft = false
 tags = [
-    "HTB",
+    "BTLO",
     "CTF_Walkthrough",
 ]
 
-featureImage = "https://raw.githubusercontent.com/JRHacka/Blog-Site/main/jrhacka/static/images/Legacy_logo.png"
-thumbnail = "https://raw.githubusercontent.com/JRHacka/Blog-Site/main/jrhacka/static/images/Legacy_logo.png"
-shareImage = "https://raw.githubusercontent.com/JRHacka/Blog-Site/main/jrhacka/static/images/Legacy_logo.png"
+featureImage = "https://raw.githubusercontent.com/JRHacka/Blog-Site/main/jrhacka/static/images/CoCanDaLogo.png"
+thumbnail = "https://raw.githubusercontent.com/JRHacka/Blog-Site/main/jrhacka/static/images/CoCanDaLogo.png"
+shareImage = "https://raw.githubusercontent.com/JRHacka/Blog-Site/main/jrhacka/static/images/CoCanDaLogo.png"
 
 +++
-Yes that title was a Pokemon reference, and if you didn't understand it I feel sorry for you. This is my walkthrough of the HTB Netmon box. Enjoy, and find my walkthough below!
+It was just a matter of time before a marvel reference came in to play... Follow along with me as we dive in to a challenge from Blue Team Labs Online. New website and new fun content as we break apart an email from an alien hostage taker!  
 
 <!--more-->
 ---
 ## Startup
 
-This is an entry level beginner friendly box, so the walkthrough is going to be the same. With that being said, the first step that other walkthroughs always skip over is spinning up the box and getting connected. While it is easy once you know how to do it if you don't know how you'll never be able to get started. Feel free to skip to the next section if you already know how to do this.
+This new website is super user friendly. There is both a paid and free version, but as far as I can tell the free version offers ton of content. With that being said create an account and then navigate to the challenge "The Planet's Prestige" located here:
 
-HTB has 2 options when it comes to completing their boxes. You can spin up a machine via HTB, or connect your own using OpenVPN. I prefer to connect my because of the customizations and different tools I have on my Kali machine, but if you want here is where to find the HTB Attack Box.
-
-The first step if you are connecting via OpenVPN is to first make sure you have OpenVPN installed on your device. Either start typing the command see if it autofill’s, or if using Kali run:
-```bash
-sudo apt install openvpn
-```
-Once you are sure is installed in the same place where you see the attack box you can select OpenVPN. Change the server if desired and then download the file. Find the file location and run the following command:
-```bash
-openvpn insert/filepath/here
-```
-
-After you have connected you may have to refresh the page in order for the connect box to turn green and show your HTB IP. After that the last step is to find the Jerry box and start it up.
-{{% notice note "Heads Up"%}}
-That IP in the green box will be the IP you use for yourself during interactions with this box. Do not use your actual IP.
+{{% notice note "Link to Challenge"%}}
+https://blueteamlabs.online/home/challenge/the-planets-prestige-e5beb8e545
 {{% /notice %}}
+
+The challenge description is actually super fun, and if you want to hear me say CoCanDa like Wakanda go check out the video! The first step is to grab the zip file that is included with the challenge. Get organized and make a BTLO directory, and move this zip file to the CoCanDa folder inside of that directory. Go ahead and unzip that file using-
+```bash
+unzip filename
+```
+and lets checkout the 'A Hope to CoCanDa.eml' file we get. 
 
 ---
 
 ## Intelligence Gathering
 
-The first thing I always like to do is run NMap. Here is the NMap scan I ran and a breakdown of the flags I used.
-```bash
-nmap -sT -sV -Pn -p- -A -T3 tar.get.ip.add -oA /home/kali/HTB/WU/Legacy/nmap/scans
-```
-{{% notice tip "NMAP Flags"%}}
--sT = TCP Connect() Scan
+I left this part here for the sake of the standard format I've been using in my blog post, but there is not a lot of intelligence to gather in this case. You can run file on the 'A Hope to CoCanDa.eml' but really we see that it is a .eml file from the extension on the end. That extension is the electronic mail extension, aka email, so we need to bust that baby open. I could not find a great tool to open it in Kali, but you can run strings on it and get a lot of good info. I do that in the video, but it is just as easy to go straight to throwing it in some eml analyzer. To best follow along here is the one I found and useed during this ctf:
+{{% notice note "Link to EML Analyzer"%}}
+https://eml-analyzer.herokuapp.com/
+{{% /notice %}}
+Go ahead and throw that file in there and click the analyze button, and then before we start dissecting that go ahead and scroll all the way to the bottom, download the attachment, and get it moved to your CoCanDa folder. We'll check it out more later, but for now let's see what answers we are able to find. 
 
--sV = OS Version
+---
+## Question 1: What is the email service used by the malicious actor? 
 
--Pn = Scan all ports, and don't ping. (Scans ports no matter what)
-
--p- = All ports
-
--A = All
-
--T3 = Speed level. (Options 1-5 with 1 being slowest and 5 fastest)
-
--oA = output namp in the three formats to the specified file path.
+Combing through the results from EML Analzer we can see that there is a domain in the from address called microapple.com, but that gives us a failed answer. We then see in our secuirty headers section that the authentication results gave us an spf=fail meaning that the IP address is not authorized to send from that domain... and yes I had to research what that meant. 
+{{% notice tip "FYI"%}}
+Below you will find the steps I took to complete this specific question, but it does not work. I confirmed these steps are correct and am therefore going to share them with you, but if you are following along you will not get the correct answer. I beleive the steps below no longer produce the right answer because this is a retired challenge. 
 {{% /notice %}}
 
-While that is running let's go ahead and see if we can find anything at the IP. Open up a web browser and put in the target machines IP address. This time there is a website, and it's asking us for some credintials. Lets let our NMap scan finish and then we'll come back to this. 
+If you run nslookup on the IP that will give you the domain emkei.cz and after submitting that to the site we know it is the correct domain.
 ```bash
-NMAP RESULTS
+nslookup 93.99.104.210
 ```
-
-So, we've got one item that really catches my eye in that NMap scan. Our old friend port 21 Anonymous FTP is open, and seems like an excellent place to start. 
-
----
-## Port 21 - Anonymous FTP
-
-In the NMap scan the first thing that should catch your eye is that port 21 FTP is allowing Anonymous FTP. Anonymous FTP essentially means we can log in wihout having a username or password. We will connect using the user name anonymous with no password.
-```bash
-ftp anonymous@tar.get.ip.add 
-```
-{{% notice note "Heads Up"%}}
-The username being used is the one before the @ sign.
+{{% notice warning "ANSWER" %}}
+emkei.cz
 {{% /notice %}}
 
-Once in we can begin doing our usual snooping, and unlike the Lame box here we can find a lot of useful stuff. In fact we can find our first flag in the users.txt file. Now we can't find the root flag, but we can find the items that are going to eventually lead us to the root flag. For now it is time we move out of our anonymous ftp and begin exploring the site itself. 
 
 ---
-## Accessing the Site
+## Question 2: What is the Reply-To email address? 
 
-Before we can begin exploring the site we need to successfully login. First thing to always do is check default credintials. After doing some quick Googling you find the username and password. Unforutanetly prtgadmin does not work, so on to plan B. There's some tools and ways we could bruteforce this perhaps, but this PRTGNetworkMonitor appears to be a pretty popular software. Being the creative hackers we are lets see if we can see the configuration files via the anonymous ftp. According to https://kb.paessler.com/en/topic/463-how-and-where-does-prtg-store-its-data we can find the configuration files stored as PRTG Configuration.dat and that seems like a good a place to start as any.
+This is one of those that you just can't over think. The answer is not the from address like you could assume, but instead it is literally the reply-to address. You can find that in the EML Analyzer right below the other headers section and it is called reply-to.
+{{% notice warning "ANSWER" %}}
+negeja3921@pashter.com
+{{% /notice %}}
 
-Jumping back into anonymous ftp we are gonna head to the directory specified from that site. I found the following four interesting files, and grabbed them. From there I opened up each in Sublime, and if you aren't using Sublime you're wrong, and did some key word searching. I got lucky and had started with admin, and got a hit right away.
-
-
-BUTTTTT it still didn't work. After banging my head on the wall I realized it was a .old document, and it had a year in it. I changed the year to 2019 and was in. Cash money it's time to explore this site.
-
----
-## Exploring the Site
-
-This website has a whole lot going on. More then I care to just snoop into, so let's see if there are any known exploits. Looking up this version of the PRTG Network Monitor I started to get a lot of great information. We get some results about a Metasploit exploit, and also some articles about using the notifications to send malicious commands. For the sake of getting better everyday let's see if we can figure out these notifications and execute something from there. 
 
 ---
-## Exploiting the Vulnerability (Command Injection)
+## Question 3: What is the filetype of the received attachment which helped to continue the investigation?
 
-Another incredible site https://tryhackme.com defines command injection as "the abuse of an application's behaviour to execute commands on the operating system, using the same privileges that the application on a device is running with." The notification portion of this site allows you to do some pretty interesting things, and that is going to be our home as we finish gaining administrator access to this box. 
+When you look at the attachment you pulled from the EML Analyzer it would appear the answer is .pdf. Things are not as they appear though because when you put that in the site it gives us a wrong answer. Go ahead and just run file on that though, and we quckly see things are not as they appear to be. 
+```bash
+file PuzzleToCoCanDa.pdf
+```
+{{% notice warning "ANSWER" %}}
+negeja3921@pashter.com
+{{% /notice %}}
+
+
+---
+## Question 4: What is the name of the malicious actor? 
+
+This one was a little tricky, because the obvious answer was Bill Jobs from the sender address, but that doesn't work. We can see a name in the reply-to email, but it's not the attackers whole name or it needs broken up some how. Let's unzip that PuzzleToCoCanDa.pdf and check out what is in it. We get three items from the zip file.
+```text
+1) Daughters Crown
+
+2) Good Job Major
+
+3) Money.xls
+```
+
+The daughters crown appears to just be photo proof that they do indeed have the princess, and nothing really jumps out. Before we dive to into it we can check the "Good Job Major" pdf file. When you open this file up in Kali nothing appears obvious at first. Go to file in the top left corener, and then select properties so we can look at the properties of the document. That is where we find the answer to this question as it has an authors name listed.
+{{% notice warning "ANSWER" %}}
+Pestero Negeja
+{{% /notice %}}
+
+---
+## Question 5: What is the location of the attacker in this Universe?
+
+There is no other useful information in our EML Analyser or the PDF properties for this question, so let's check out the Money.xls file before we look more into the "Daughter Crown" file. When your open up that excel document you get two sheets, sheet 1 and sheet3. This may seem odd, but after snooping and looking around I wasn't able to unvcover a sheet 2, and you also do not have to to find the answer. Sheet one give you a bunch of story content, but go and check out some of the data on sheet 3. If you look around enough in C4 you will find the following:
+```text
+VGhlIE1hcnRpYW4gQ29sb255LCBCZXNpZGUgSW50ZXJwbGFuZXRhcnkgU3BhY2Vwb3J0Lg==
+```
+You may recognize this as base64, but I did not. To be quite honest I kind of just assumed it was, and got lucky. When you put this in a base64 decoder, like this website https://www.base64decode.org/, you get the correct answer.
+{{% notice warning "ANSWER" %}}
+The Martian Colony, Beside Interplanetary Spaceport.
+{{% /notice %}}
+
+---
+## Question 6: What could be the probable C&C domain to control the attacker’s autonomous bots?
+
+This one we are going to jump back into or EML Analyser results. If we submit the reply-to email domain we can confirm that is indeed the answer.
+{{% notice warning "ANSWER" %}}
+pashter.com
+{{% /notice %}}
+
+---
+## Wrap Up
+
+That's all she wrote! We have completed the challenge and provided the CoCanDians with the information to save the kings daughter. My first experience with BTLO was incredibly fun, and there will certainly be more in the future. I hope you all enjoyed, check out the walkthrough video below, and keep getting better everyday!
 
 ---
 
@@ -110,19 +130,4 @@ Another incredible site https://tryhackme.com defines command injection as "the 
 
 <br>
 
-
-JRHacka
-08/27/22
-Concanda - BTLO
-
-What is the Reply-To email address? | negeja3921@pashter.com
-
-What is the filetype of the received attachment which helped to continue the investigation? | .zip (hidden as a .pdf but run file and it reveals zip)
-
 What could be the probable C&C domain to control the attacker’s autonomous bots? | pashter.com
-
-What is the name of the malicious actor? | Pestero Negeja (we looked in the properties of the good job major pdf)
-
-What is the location of the attacker in this Universe? | The Martian Colony, Beside Interplanetary Spaceport.(Found this via snooping on sheet three of that money.xls)
-
-what is the malcious actos domain? | emkei.cz (should be able to run nsloookup on spf failed IP, but did not give correct results)
