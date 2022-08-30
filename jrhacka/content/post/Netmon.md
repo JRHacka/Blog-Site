@@ -3,13 +3,13 @@ author = "Jake Rice"
 title = "Who's That Netmon?!?!"
 date = "2022-08-29"
 description = ""
-draft = false
+draft = true
 tags = [
     "HTB",
     "CTF_Walkthrough",
 ]
 
-featureImage = "https://raw.githubusercontent.com/JRHacka/Blog-Site/main/jrhacka/static/images/CoCanDaLogo.png"
+featureImage = "https://raw.githubusercontent.com/JRHacka/Blog-Site/main/jrhacka/static/images/Netmon.png" #Can't get image to work
 thumbnail = "https://raw.githubusercontent.com/JRHacka/Blog-Site/main/jrhacka/static/images/CoCanDaLogo.png"
 shareImage = "https://raw.githubusercontent.com/JRHacka/Blog-Site/main/jrhacka/static/images/CoCanDaLogo.png"
 
