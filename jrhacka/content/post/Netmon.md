@@ -1,7 +1,7 @@
 +++
 author = "Jake Rice"
 title = "Who's That Netmon?!?!"
-date = "2022-08-08"
+date = "2022-08-29"
 description = ""
 draft = false
 tags = [
@@ -9,9 +9,9 @@ tags = [
     "CTF_Walkthrough",
 ]
 
-featureImage = "https://raw.githubusercontent.com/JRHacka/Blog-Site/main/jrhacka/static/images/Netmon.png"
-thumbnail = "https://raw.githubusercontent.com/JRHacka/Blog-Site/main/jrhacka/static/images/Netmon.png"
-shareImage = "https://raw.githubusercontent.com/JRHacka/Blog-Site/main/jrhacka/static/images/Netmon.png"
+featureImage = "https://raw.githubusercontent.com/JRHacka/Blog-Site/main/jrhacka/static/images/CoCanDaLogo.png"
+thumbnail = "https://raw.githubusercontent.com/JRHacka/Blog-Site/main/jrhacka/static/images/CoCanDaLogo.png"
+shareImage = "https://raw.githubusercontent.com/JRHacka/Blog-Site/main/jrhacka/static/images/CoCanDaLogo.png"
 
 +++
 Yes that title was a Pokemon reference, and if you didn't understand it I feel sorry for you. This is my walkthrough of the HTB Netmon box. Enjoy, and find my walkthough below!
@@ -196,8 +196,3 @@ After you've connected it's just a matter of snooping around and navigating back
 
 ---
 
-## Walkthrough Video
-
-{{< youtube  >}}
-
-<br>
