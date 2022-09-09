@@ -19,3 +19,8 @@ SO far so good 07/06/2022 (waiting for it to go wrong)
 Colors and stuff can be found in /home/…/themes/hugo-clarity/assets/sass
 	Notes on that in blog-site/notes/customization
 	
+When adding to a new device to push to live site-
+	git remote add origin https://github.com/JRHacka/jrhacka.github.io (Run this in public folder)
+	May have to get pull, just use rebase skip if needed and then go back and update the content
+	https://careerkarma.com/blog/git-fatal-origin-does-not-appear-to-be-a-git-repository/#:~:text=The%20%E2%80%9Cfatal%3A%20%E2%80%98origin%E2%80%99%20does%20not%20appear%20to%20be,command%20to%20add%20a%20remote%20to%20your%20project.
+
