@@ -10,8 +10,8 @@ tags = [
 ]
 
 featureImage = "https://raw.githubusercontent.com/JRHacka/Blog-Site/main/jrhacka/static/images/Wazuh.png"
-thumbnail = "https://raw.githubusercontent.com/JRHacka/Blog-Site/main/jrhacka/static/images/Wazuh.png "
-shareImage = "https://raw.githubusercontent.com/JRHacka/Blog-Site/main/jrhacka/static/images/Wazuh.png "
+thumbnail = "https://raw.githubusercontent.com/JRHacka/Blog-Site/main/jrhacka/static/images/Wazuh.png"
+shareImage = "https://raw.githubusercontent.com/JRHacka/Blog-Site/main/jrhacka/static/images/Wazuh.png"
 
 +++
 Everyone welcome to my Ted Talk. This post is primarily going to be a discussion on SIEM’s in general, and then on what my initial thoughts were on Wazuh. The installation instructions online are excellent, so I’m going to let you all use that instead of me just rewriting them. Please refer to the video if you do get stuck or have questions!
