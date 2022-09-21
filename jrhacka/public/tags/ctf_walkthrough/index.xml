@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>CTF_Walkthrough on JRHacka</title>
+    <link>https://jrhacka.github.io/tags/ctf_walkthrough/</link>
+    <description>Recent content in CTF_Walkthrough on JRHacka</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <copyright>Copyright © 2022, Jake Rice and the Hugo Authors; all rights reserved.</copyright>
+    <lastBuildDate>Sat, 04 Jun 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://jrhacka.github.io/tags/ctf_walkthrough/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Lame is Cool</title>
+      <link>https://jrhacka.github.io/post/lame/</link>
+      <pubDate>Sat, 04 Jun 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://jrhacka.github.io/post/lame/</guid>
+      <description>
+        
+          
+            &lt;p&gt;Clever titles for days. This walkthough of the Lame box is another begginner friendly entry level HTB. We&#39;ll explore a little anonymous FTP, and find out more about Samba. You can find the walkthrough video down below!&lt;/p&gt;
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>This is my Legacy</title>
+      <link>https://jrhacka.github.io/post/legacy/</link>
+      <pubDate>Wed, 25 May 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://jrhacka.github.io/post/legacy/</guid>
+      <description>
+        
+          
+            &lt;p&gt;The clever titles just don&#39;t stop! This is my walkthrough of the Legacy HTB. Enjoy, find the video below, and reach out if you have any questions.&lt;/p&gt;
+          
+          
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>
