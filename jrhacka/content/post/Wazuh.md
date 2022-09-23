@@ -3,15 +3,15 @@ author = "Jake Rice"
 title = 'Hozah for Wazuh'
 date = "2022-09-08"
 description = ""
-draft = false
+draft = true
 tags = [
     "Projects",
     "SIEM",
 ]
 
-featureImage = "https://raw.githubusercontent.com/JRHacka/Blog-Site/main/jrhacka/static/images/Wazuh.png"
-thumbnail = "https://raw.githubusercontent.com/JRHacka/Blog-Site/main/jrhacka/static/images/Wazuh.png"
-shareImage = "https://raw.githubusercontent.com/JRHacka/Blog-Site/main/jrhacka/static/images/Wazuh.png"
+featureImage = "https://raw.githubusercontent.com/JRHacka/Blog-Site/main/jrhacka/static/images/Waz.PNG"
+thumbnail = "https://raw.githubusercontent.com/JRHacka/Blog-Site/main/jrhacka/static/images/Waz.PNG"
+shareImage = "https://raw.githubusercontent.com/JRHacka/Blog-Site/main/jrhacka/static/images/Waz.PNG"
 
 +++
 Everyone welcome to my Ted Talk. This post is primarily going to be a discussion on SIEM’s in general, and then on what my initial thoughts were on Wazuh. The installation instructions online are excellent, so I’m going to let you all use that instead of me just rewriting them. Please refer to the video if you do get stuck or have questions!
