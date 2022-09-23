@@ -9,9 +9,9 @@ tags = [
     "Youtube",
 ]
 
-featureImage = "https://github.com/JRHacka/Blog-Site/blob/main/jrhacka/static/images/JohnHammonQA.png?raw=true"
-thumbnail = "https://github.com/JRHacka/Blog-Site/blob/main/jrhacka/static/images/JohnHammonQA.png?raw=true"
-shareImage = "https://github.com/JRHacka/Blog-Site/blob/main/jrhacka/static/images/JohnHammonQA.png?raw=true"
+featureImage = "images/JohnHammonQA.png"
+thumbnail = "images/JohnHammonQA.png"
+shareImage = "images/JohnHammonQA.png"
 
 +++
 What an incredible honor and experience it was to hang out with John for a little bit! We had a blast talking about the industry, some advice for people new to the industry, and then what it's like creating content and going to work at the same time. 
@@ -19,10 +19,9 @@ What an incredible honor and experience it was to hang out with John for a littl
 <!--more-->
 ---
 
-## hello
 
 ## How to be a Cybersecurity Youtuber with John Hammond
 
-{{< youtube C5VlJqp0hJ8 >}}
+{{< youtube O7eKCPF7-QU >}}
 
 <br>
