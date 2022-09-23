@@ -3,7 +3,7 @@ author = "Jake Rice"
 title = 'Hozah for Wazuh'
 date = "2022-09-08"
 description = ""
-draft = true
+draft = false
 tags = [
     "Projects",
     "SIEM",
